@@ -7,14 +7,35 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    public function sendResponse($result, $message)
+
+    public $orderStatuses = [
+        'cleared' => 1,
+        'hold' => 2,
+        'unpaid' => 3,
+        'aborted' => 4,
+    ];
+
+    public $tableStatuses = [
+        'occupied' => 1,
+        'unpaid' => 2,
+        'empty' => 3,
+    ];
+    public $userTypes = [
+        'admin' => 'admin',
+        'cashier' => 'cashier',
+        'waiter' => 'waiter',
+    ];
+    public $orderTypes = [
+        'table' => 'table',
+        'takeaway' => 'takeaway',
+    ];
+    public function sendResponse($result, $message, $code = 200)
     {
-        $response = [
-            'success' => true,
-            'data'    => $result,
+        return response()->json([
             'message' => $message,
-        ];
-        return response()->json($response, 200);
+            'code' => $code,
+            'data' => $result,
+        ]);
     }
 
     public function sendError($error, $errorMessages = [], $code = 404)
