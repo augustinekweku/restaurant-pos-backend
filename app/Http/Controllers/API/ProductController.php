@@ -55,17 +55,19 @@ class ProductController extends BaseController
         ]);
         return $this->sendResponse($res, 'Category updated successfully', 200);
     }
-    public function deleteCategory(Request $request)
+    public function deleteCategory($id)
     {
         //first delete the original file from the server
         // $this->deleteFileFromServer($request->image);
-        //validate request
-        $this->validate($request, [
-            'id' => 'required'
-        ]);
+        //validate request 
+
+        if (!$id) {
+            return $this->sendError('Error', ['error' => 'Please provide the id of the category you want to delete']);
+        }
+
         try {
             //code...
-            $res =  Category::where('id', $request->id)->delete();
+            $res =  Category::where('id', $id)->delete();
             return $this->sendResponse($res, 'Category deleted successfully', 200);
         } catch (\Throwable $th) {
             //throw $th;

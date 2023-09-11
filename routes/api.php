@@ -44,7 +44,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('categories', [ProductController::class, 'getCategories']);
     Route::post('create-category', [ProductController::class, 'createCategory']);
     Route::post('edit-category', [ProductController::class, 'editCategory']);
-    Route::delete('delete-category', [ProductController::class, 'deleteCategory']);
+    Route::delete('delete-category/{id}', [ProductController::class, 'deleteCategory']);
     Route::get('get-category/{id}', [ProductController::class, 'getCategoryId']);
 
 
