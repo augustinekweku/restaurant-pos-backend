@@ -299,7 +299,7 @@ class OrderController extends BaseController
         DB::beginTransaction();
         try {
             $order = Order::where('id', $request->id)->update([
-                'status' => $request->status,
+                'status' => $this->orderStatuses['cleared'],
                 'balance' => $request->balance,
                 'paid' => $request->paid,
             ]);

@@ -61,7 +61,7 @@ class CompanyController extends BaseController
         }
     }
 
-    public function deleteCompany(Request $request)
+    public function deleteCompany(Request $request, $id)
     {
         //validate request
         $this->validate($request, [
@@ -69,7 +69,8 @@ class CompanyController extends BaseController
         ]);
         try {
             //code...
-            $res = Company::where('id', $request->id)->delete();
+            if (!$id) return $this->sendError('Error', 'Company id is required', 500);
+            $res = Company::where('id', $id)->delete();
             return $this->sendResponse($res, 'Company deleted successfully', 200);
         } catch (\Throwable $th) {
             //throw $th;

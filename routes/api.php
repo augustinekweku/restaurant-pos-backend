@@ -83,7 +83,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('companies', [CompanyController::class, 'getCompanies']);
     Route::post('create-company', [CompanyController::class, 'createCompany']);
     Route::post('edit-company', [CompanyController::class, 'editCompany']);
-    Route::delete('delete-company', [CompanyController::class, 'deleteCompany']);
+    Route::delete('delete-company/{id}', [CompanyController::class, 'deleteCompany']);
 
     //Reports
     Route::get('get-cleared-order-items', [ReportsController::class, 'getClearedOrderItems']);

@@ -212,7 +212,6 @@ class ProductController extends BaseController
         //validate request
         $this->validate($request, [
             'table_name' => 'required|unique:Tables',
-            'status' => 'required'
         ]);
         try {
             $res =  Table::create([
